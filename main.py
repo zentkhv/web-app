@@ -12,7 +12,7 @@ RESOURCE_DIR = os.path.join(BASE_FOLDER, "resources")
 @app.route('/')
 def hello_world():
     with open(os.path.join(RESOURCE_DIR, "response.json")) as f:
-        ip = os.popen('curl ifconfig.me')
+        ip = os.popen('hostname -I')
         date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
         version = json.loads(f.read()).get("payload")
         return render_template('index.html', date=date, version=version, ip=ip.read())
